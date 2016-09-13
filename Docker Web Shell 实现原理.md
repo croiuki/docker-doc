@@ -4,7 +4,7 @@ Docker Web Shell 实现原理
 Docker Web Shell实现从Web浏览器以类似SSH的方式登录并操作Docker容器。
 
 #界面展示
-![](https://github.com/croiuki/docker-doc/tree/master/images/docker-web-shell/web-shell-1.png)
+![](https://github.com/croiuki/docker-doc/blob/master/images/docker-web-shell/web-shell-1.png)
 Docker Web Shell提供类似传统SSH终端的用户体验。
 
 #实现原理
