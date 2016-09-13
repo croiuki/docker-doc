@@ -1,27 +1,26 @@
-Docker Web Shell ÊµÏÖÔ­Àí
+Docker Web Shell å®žçŽ°åŽŸç†
 ===
-#ËµÃ÷
-Docker Web ShellÊµÏÖ´ÓWebä¯ÀÀÆ÷ÒÔÀàËÆSSHµÄ·½Ê½µÇÂ¼²¢²Ù×÷DockerÈÝÆ÷¡£
+#è¯´æ˜Ž
+Docker Web Shellå®žçŽ°ä»ŽWebæµè§ˆå™¨ä»¥ç±»ä¼¼SSHçš„æ–¹å¼ç™»å½•å¹¶æ“ä½œDockerå®¹å™¨ã€‚
 
-#½çÃæÕ¹Ê¾
-ÔÚÈÝÆ÷ÁÐ±í½çÃæ£¬Ñ¡ÔñÈÝÆ÷²¢µã»÷¡¾Ô¶³Ì¡¿£¬½øÈëDockerÈÝÆ÷Web Shell½çÃæ£º
+#ç•Œé¢å±•ç¤º
+![](https://github.com/croiuki/docker-doc/tree/master/images/docker-web-shell/web-shell-1.png)
+Docker Web Shellæä¾›ç±»ä¼¼ä¼ ç»ŸSSHç»ˆç«¯çš„ç”¨æˆ·ä½“éªŒã€‚
 
-Docker Web ShellÌá¹©ÀàËÆ´«Í³SSHÖÕ¶ËµÄÓÃ»§ÌåÑé¡£
+#å®žçŽ°åŽŸç†
+##æ¦‚è¿°
+ä¸»è¦çš„ç³»ç»Ÿç»„ä»¶åŒ…æ‹¬ï¼šWebæµè§ˆå™¨ã€Docker Controllerã€Docker Daemonå’ŒDockerå®¹å™¨ã€‚
++ Webæµè§ˆå™¨è´Ÿè´£ç•Œé¢å‘ˆçŽ°ã€‚
++ Docker Controlleræ˜¯Dockerå®¹å™¨åº”ç”¨çš„æŽ§åˆ¶ä¸­å¿ƒï¼Œä½œä¸ºæ¡¥æ¢ï¼Œè´Ÿè´£æ¶ˆæ¯çš„è½¬å‘ã€‚
++ Docker Daemonæä¾›HTTP APIæŽ¥å£ç»™å¤–éƒ¨ç³»ç»Ÿè°ƒç”¨ä»¥è®¿é—®å®¹å™¨å†…éƒ¨ã€‚ã€
 
-#ÊµÏÖÔ­Àí
-##¸ÅÊö
-Ö÷ÒªµÄÏµÍ³×é¼þ°üÀ¨£ºWebä¯ÀÀÆ÷¡¢Docker Controller¡¢Docker DaemonºÍDockerÈÝÆ÷¡£
-+ Webä¯ÀÀÆ÷¸ºÔð½çÃæ³ÊÏÖ¡£
-+ Docker ControllerÊÇDockerÈÝÆ÷Ó¦ÓÃµÄ¿ØÖÆÖÐÐÄ£¬×÷ÎªÇÅÁº£¬¸ºÔðÏûÏ¢µÄ×ª·¢¡£
-+ Docker DaemonÌá¹©HTTP API½Ó¿Ú¸øÍâ²¿ÏµÍ³µ÷ÓÃÒÔ·ÃÎÊÈÝÆ÷ÄÚ²¿¡£¡¢
+##é“¾è·¯å»ºç«‹
+Webæµè§ˆå™¨è¿è¡ŒJSè„šæœ¬ï¼Œé€šè¿‡Web Socketä¸ŽDocker Controllerå»ºç«‹é€šä¿¡é“¾è·¯ã€‚
+Docker Controlleré€šè¿‡Docker HTTP APIä¸ŽDocker Daemonå»ºç«‹é€šä¿¡é“¾è·¯ã€‚è¿™é‡Œä½¿ç”¨åˆ°Docker HTTP APIçš„Exec Createã€Exec Startå’ŒExec ResizeæŽ¥å£ï¼Œå¹¶é€šè¿‡hijackingæŠ€æœ¯ï¼Œåˆ©ç”¨Exec Startè¿”å›žçš„æ•°æ®æµæ‰¿è½½Docker Controllerå’ŒDocker Daemonä¹‹é—´çš„äº¤äº’æ•°æ®ã€‚
 
-##Á´Â·½¨Á¢
-Webä¯ÀÀÆ÷ÔËÐÐJS½Å±¾£¬Í¨¹ýWeb SocketÓëDocker Controller½¨Á¢Í¨ÐÅÁ´Â·¡£
-Docker ControllerÍ¨¹ýDocker HTTP APIÓëDocker Daemon½¨Á¢Í¨ÐÅÁ´Â·¡£ÕâÀïÊ¹ÓÃµ½Docker HTTP APIµÄExec Create¡¢Exec StartºÍExec Resize½Ó¿Ú£¬²¢Í¨¹ýhijacking¼¼Êõ£¬ÀûÓÃExec Start·µ»ØµÄÊý¾ÝÁ÷³ÐÔØDocker ControllerºÍDocker DaemonÖ®¼äµÄ½»»¥Êý¾Ý¡£
-
-##½»»¥
-Á´Â·½¨Á¢ºó£¬ÓÃ»§¾Í¿ÉÒÔÔÚWebä¯ÀÀÆ÷ÊäÈë×Ö·ûÓëDockerÈÝÆ÷½»»¥¡£
-µ±ÓÃ»§ÔÚä¯ÀÀÆ÷½øÐÐ¼üÅÌ²Ù×÷Ê±£¬Êý¾ÝÊ×ÏÈÍ¨¹ýWeb SocketÍ¨µÀµ½´ïDocker Controller£¬Docker ControllerÍ¨¹ýHTTP API½Ó¿ÚÍ¸´«¸øDocker Daemon£¬Docker DaemonÔÙ´«µÝ¸øÈÝÆ÷¡£
-ÈÝÆ÷ÊÕµ½Êý¾Ýºó£¬ÔÙ¸ù¾ÝÊý¾Ý´ú±íµÄº¬Òå£¬°´ÕÕÊý¾ÝÀ´Ê±µÄÍ¨Â·£¬½«¶ÔÓ¦µÄÊý¾Ý»ØÏÔµ½ä¯ÀÀÆ÷ÉÏ¡£
-Í¨¹ýÕâÖÖ·½Ê½£¬¾ÍÍê³ÉÁË½»»¥µÄ²Ù×÷¡£
+##äº¤äº’
+é“¾è·¯å»ºç«‹åŽï¼Œç”¨æˆ·å°±å¯ä»¥åœ¨Webæµè§ˆå™¨è¾“å…¥å­—ç¬¦ä¸ŽDockerå®¹å™¨äº¤äº’ã€‚
+å½“ç”¨æˆ·åœ¨æµè§ˆå™¨è¿›è¡Œé”®ç›˜æ“ä½œæ—¶ï¼Œæ•°æ®é¦–å…ˆé€šè¿‡Web Socketé€šé“åˆ°è¾¾Docker Controllerï¼ŒDocker Controlleré€šè¿‡HTTP APIæŽ¥å£é€ä¼ ç»™Docker Daemonï¼ŒDocker Daemonå†ä¼ é€’ç»™å®¹å™¨ã€‚
+å®¹å™¨æ”¶åˆ°æ•°æ®åŽï¼Œå†æ ¹æ®æ•°æ®ä»£è¡¨çš„å«ä¹‰ï¼ŒæŒ‰ç…§æ•°æ®æ¥æ—¶çš„é€šè·¯ï¼Œå°†å¯¹åº”çš„æ•°æ®å›žæ˜¾åˆ°æµè§ˆå™¨ä¸Šã€‚
+é€šè¿‡è¿™ç§æ–¹å¼ï¼Œå°±å®Œæˆäº†äº¤äº’çš„æ“ä½œã€‚
 
