@@ -5,10 +5,13 @@ Docker Web Shell实现从Web浏览器以类似SSH的方式登录并操作Docker�
 
 #界面展示
 ![](https://github.com/croiuki/docker-doc/blob/master/images/docker-web-shell/web-shell-1.png)
+![](https://github.com/croiuki/docker-doc/blob/master/images/docker-web-shell/web-shell-2.png)
+![](https://github.com/croiuki/docker-doc/blob/master/images/docker-web-shell/web-shell-3.png)
 Docker Web Shell提供类似传统SSH终端的用户体验。
 
 #实现原理
 ##概述
+![](https://github.com/croiuki/docker-doc/blob/master/images/docker-web-shell/docker-web-shell.png)
 主要的系统组件包括：Web浏览器、Docker Controller、Docker Daemon和Docker容器。
 + Web浏览器负责界面呈现。
 + Docker Controller是Docker容器应用的控制中心，作为桥梁，负责消息的转发。
