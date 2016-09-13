@@ -21,7 +21,7 @@ http://blog.csdn.net/dog250/article/details/45788279
 通过Macvlan创建的子接口和网卡同属一个子网。
 
 ##操作步骤
-1. 使用docker network命令创建类型为macvlan的Docker网络macvlan_pub：
+#####1.使用docker network命令创建类型为macvlan的Docker网络macvlan_pub：
 ```
 	docker network create -d macvlan \
     	--subnet=192.168.51.0/24 \
@@ -29,13 +29,13 @@ http://blog.csdn.net/dog250/article/details/45788279
     	-o parent=enp0s3 macvlan_pub
 ```
 
-2. 使用macvlan_pub，并指定IP运行容器：
+#####2.使用macvlan_pub，并指定IP运行容器：
 ```
 	docker  run --net=macvlan_pub --ip=192.168.51.121 -itd alpine /bin/sh
 	docker  run --net=macvlan_pub --ip=192.168.51.122 -itd alpine /bin/sh
 ```
 
-3. 登录其中一个容器查看IP：
+#####3.登录其中一个容器查看IP：
 ```
 	/ # ip addr show eth0
 	11: eth0@if2: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UNKNOWN 
@@ -46,7 +46,7 @@ http://blog.csdn.net/dog250/article/details/45788279
        valid_lft forever preferred_lft forever
 ```
 
-4. 查看容器路由：
+#####4.查看容器路由：
 ```
 	/ # route -n
 	Kernel IP routing table
@@ -55,7 +55,7 @@ http://blog.csdn.net/dog250/article/details/45788279
 	192.168.51.0    0.0.0.0         255.255.255.0   U     0      0        0 eth0
 ```
 
-5. Ping另一个容器：
+#####5.Ping另一个容器：
 ```
 	/ # ping 192.168.51.122
 	PING 192.168.51.122 (192.168.51.122): 56 data bytes
@@ -70,7 +70,7 @@ Ping网关：
 	64 bytes from 192.168.51.254: seq=1 ttl=255 time=1.655 ms
 ```
 
-6. 在另一台宿主机上重复（1）-（5）步骤创建Docker网络，启动容器。两台宿主机上的Docker容器都可以互相Ping通。
+#####6.在另一台宿主机上重复（1）-（5）步骤创建Docker网络，启动容器。两台宿主机上的Docker容器都可以互相Ping通。
 
 ##Linux操作指令
 设置网卡enp0s3为混杂模式：
@@ -111,15 +111,15 @@ Ping网关：
 ![](https://github.com/croiuki/docker-doc/blob/master/images/docker-macvlan/macvlan+vlan-docker.png)
 
 ##操作步骤
-1. 在宿主机网卡enp0s3上创建两个vlan子接口：
-```
+#####1.在宿主机网卡enp0s3上创建两个vlan子接口：
+```shell
     ip link add link enp0s3 name enp0s3.200 type vlan id 200
 	ip link set enp0s3.200 up
 	ip link add link enp0s3 name enp0s3.201 type vlan id 201
 	ip link set enp0s3.201 up
 ```
 
-2. 使用docker network命令创建类型为macvlan的Docker网络macvlan200和macvlan201，父接口指向上一步骤创建的vlan子接口：
+#####2.使用docker network命令创建类型为macvlan的Docker网络macvlan200和macvlan201，父接口指向上一步骤创建的vlan子接口：
 ```
 	docker network  create  -d macvlan \
 		--subnet=192.168.200.0/24 \
@@ -132,23 +132,23 @@ Ping网关：
 		-o parent=enp0s3.201 macvlan201
 ```
 
-3. 基于macvlan200创建容器：
+#####3.基于macvlan200创建容器：
 ```
 	docker run --net=macvlan200 -idt --ip=192.168.200.2 alpine /bin/sh
 	docker run --net=macvlan200 -idt --ip=192.168.200.3 alpine /bin/sh
 ```
 
-4. 基于macvlan201创建容器：
+#####4.基于macvlan201创建容器：
 ```
 	docker run --net=macvlan201 -idt --ip=192.168.201.2 alpine /bin/sh
 	docker run --net=macvlan201 -idt --ip=192.168.201.3 alpine /bin/sh
 ```
 
-5. 在另一个宿主机上重复（1）-（4）步骤创建基于macvlan200和macvlan201的容器，容器IP分别为：192.168.200.128、192.168.200.129、192.168.201.128、192.168.201.129。
+#####5.在另一个宿主机上重复（1）-（4）步骤创建基于macvlan200和macvlan201的容器，容器IP分别为：192.168.200.128、192.168.200.129、192.168.201.128、192.168.201.129。
 
 
-6. 不同宿主机上，相同vlan的容器可以互通，不同vlan的容器不能互通。如果需要不同vlan的容器互通，需要在路由器上做相应的设置。
+#####6.不同宿主机上，相同vlan的容器可以互通，不同vlan的容器不能互通。如果需要不同vlan的容器互通，需要在路由器上做相应的设置。
 
 
-7. 在宿主机1上容器192.168.201.3里Ping宿主机2上容器192.168.201.128，通过抓包可以看到ICMP包中带了802.1Q VLAN Tag：
+#####7.在宿主机1上容器192.168.201.3里Ping宿主机2上容器192.168.201.128，通过抓包可以看到ICMP包中带了802.1Q VLAN Tag：
 ![](https://github.com/croiuki/docker-doc/blob/master/images/docker-macvlan/macvlan-tcpdump.png)
